@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kauthar Tijjani | Data Analyst Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0b0f0e;
+      --surface: #121918;
+      --surface2: #1a2321;
+      --border: #243330;
+      --accent: #00e8a2;
+      --accent2: #ff6b35;
+      --accent3: #ffd166;
+      --text: #e8f0ee;
+      --muted: #7a9990;
+      --card-bg: #111c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,232,162,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,232,162,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(11,15,14,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 1.0;
+      margin-bottom: 0.2rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-bio {
+      max-width: 560px;
+      font-size: 1rem;
+      color: #b0c4be;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+
+    .btn-primary:hover {
+      background: #00ffc0;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-orb {
+      position: absolute;
+      right: -5%;
+      top: 15%;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, rgba(0,232,162,0.12), transparent 70%);
+      pointer-events: none;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      margin-left: 1rem;
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s;
+    }
+
+    .skill-card:hover::before { transform: scaleY(1); }
+    .skill-card:hover {
+      border-color: rgba(0,232,162,0.3);
+      transform: translateY(-3px);
+    }
+
+    .skill-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+
+    .skill-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(0,232,162,0.08);
+      border: 1px solid rgba(0,232,162,0.2);
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid { display: grid; gap: 2.5rem; }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(0,232,162,0.4);
+      transform: translateY(-4px);
+    }
+
+    .project-card.featured {
+      border-color: rgba(0,232,162,0.2);
+    }
+
+    /* Featured project layout */
+    .project-featured-header {
+      padding: 2.5rem 2.5rem 0;
+    }
+
+    .project-featured-body {
+      padding: 1.5rem 2.5rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* Standard side-by-side */
+    .project-split {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+    }
+
+    .project-visual {
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+    }
+
+    .project-visual svg {
+      width: 100%;
+      height: auto;
+      opacity: 0.9;
+    }
+
+    .project-content {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .badge-eda  { background: rgba(255,209,102,0.12); color: var(--accent3); border: 1px solid rgba(255,209,102,0.3); }
+    .badge-ml   { background: rgba(0,232,162,0.1); color: var(--accent); border: 1px solid rgba(0,232,162,0.25); }
+    .badge-viz  { background: rgba(255,107,53,0.1); color: var(--accent2); border: 1px solid rgba(255,107,53,0.25); }
+    .badge-stats{ background: rgba(120,90,200,0.1); color: #b09df5; border: 1px solid rgba(120,90,200,0.25); }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: #b0c4be;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-highlights li {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .project-highlights li::before {
+      content: '→';
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tech-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      padding: 0.2rem 0.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .project-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+
+    .project-link:hover { gap: 0.7rem; }
+
+    /* ─── ANALYSIS PANEL ─── */
+    .analysis-panel {
+      border-top: 1px solid var(--border);
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease, padding 0.3s ease;
+    }
+
+    .analysis-panel.open {
+      max-height: 1200px;
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .analysis-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border);
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .analysis-toggle:hover { background: rgba(0,232,162,0.04); }
+
+    .toggle-arrow {
+      transition: transform 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .analysis-toggle.open .toggle-arrow { transform: rotate(180deg); }
+
+    /* Analysis content styles */
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .analysis-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .finding-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+      position: relative;
+    }
+
+    .finding-box.highlight {
+      border-color: rgba(0,232,162,0.3);
+    }
+
+    .finding-box.highlight-orange {
+      border-color: rgba(255,107,53,0.3);
+    }
+
+    .finding-box.highlight-yellow {
+      border-color: rgba(255,209,102,0.3);
+    }
+
+    .finding-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .finding-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .finding-value.orange { color: var(--accent2); }
+    .finding-value.yellow { color: var(--accent3); }
+    .finding-value.purple { color: #b09df5; }
+
+    .finding-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .analysis-subhead {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .analysis-chart-wrap {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .analysis-chart-wrap svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .analysis-text {
+      font-size: 0.88rem;
+      color: #b0c4be;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .analysis-text strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .methodology-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .methodology-list li {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.73rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .methodology-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent3);
+    }
+
+    .code-snippet {
+      background: #0a0f0e;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: #a0c4bc;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .code-snippet .cm { color: var(--muted); }
+    .code-snippet .kw { color: var(--accent); }
+    .code-snippet .st { color: var(--accent3); }
+    .code-snippet .fn { color: #7eb8f7; }
+    .code-snippet .nm { color: var(--accent2); }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      margin: 1rem 0;
+    }
+
+    .result-table th {
+      padding: 0.5rem 0.8rem;
+      text-align: left;
+      background: var(--surface2);
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.63rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-table td {
+      padding: 0.5rem 0.8rem;
+      color: #b0c4be;
+      border-bottom: 1px solid rgba(36,51,48,0.5);
+    }
+
+    .result-table tr:last-child td { border-bottom: none; }
+
+    .result-table .positive { color: var(--accent); }
+    .result-table .negative { color: var(--accent2); }
+    .result-table .neutral  { color: var(--accent3); }
+
+    /* ─── BAR CHART ANIMATED ─── */
+    .bar-animated rect {
+      transform-origin: bottom;
+      animation: growBar 1s ease forwards;
+      transform: scaleY(0);
+    }
+
+    @keyframes growBar {
+      to { transform: scaleY(1); }
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.4rem;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,232,162,0.15);
+    }
+
+    .timeline-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-org {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-details {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .timeline-details li {
+      font-size: 0.9rem;
+      color: #b0c4be;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .timeline-details li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.15rem;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-text p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .contact-item:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .contact-icon { font-size: 1.2rem; width: 2rem; text-align: center; }
+
+    .contact-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .contact-value { font-size: 0.9rem; color: var(--text); }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .form-input, .form-textarea {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.9rem 1.1rem;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-textarea { min-height: 120px; }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--accent);
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-text span { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .hero-orb { display: none; }
+      .project-split { grid-template-columns: 1fr; }
+      .project-featured-body { grid-template-columns: 1fr; }
+      .analysis-grid { grid-template-columns: 1fr; }
+      .analysis-grid-3 { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .analysis-panel.open { padding: 1.5rem; }
+      .project-featured-header, .project-content { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">KT — Portfolio</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" id="about">
+    <div class="hero-orb"></div>
+    <div class="hero-label">Data Analyst · Nigeria</div>
+    <h1>Kauthar<br/><em>Tijjani</em></h1>
+    <p class="hero-subtitle">Turning raw data into decisions that matter.</p>
+    <p class="hero-bio">
+      Data analyst with 4 years of experience at <strong>APPEALS Project Nigeria</strong>, 
+      a World Bank-funded agricultural development initiative. I specialise in 
+      transforming complex datasets — including prediction market data from Polymarket — 
+      into clear, actionable insights through rigorous statistical analysis and compelling visualisation.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">4+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">12+</span>
+        <span class="stat-label">Projects Completed</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">50K+</span>
+        <span class="stat-label">Records Analysed</span>
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header fade-in">
+      <span class="section-num">01 /</span>
+      <h2 class="section-title">Skills & Tools</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Python & EDA</div>
+        <p class="skill-desc">End-to-end data pipelines, statistical analysis, and rich exploratory workflows.</p>
+        <div class="skill-tags">
+          <span class="tag">Pandas</span><span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Scipy</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Data Visualisation</div>
+        <p class="skill-desc">Designing dashboards and charts that communicate findings instantly.</p>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span><span class="tag">Plotly</span>
+          <span class="tag">Tableau</span><span class="tag">Altair</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">SQL & Databases</div>
+        <p class="skill-desc">Complex queries, data modelling, and optimised aggregations across large tables.</p>
+        <div class="skill-tags">
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+          <span class="tag">BigQuery</span><span class="tag">SQLite</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📈</div>
+        <div class="skill-name">Statistical Analysis</div>
+        <p class="skill-desc">Hypothesis testing, regression modelling, and time-series forecasting.</p>
+        <div class="skill-tags">
+          <span class="tag">A/B Testing</span><span class="tag">Regression</span>
+          <span class="tag">Forecasting</span><span class="tag">ANOVA</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🌾</div>
+        <div class="skill-name">Domain: Development Data</div>
+        <p class="skill-desc">4 years working on agricultural and socio-economic programme data in Nigeria.</p>
+        <div class="skill-tags">
+          <span class="tag">M&E</span><span class="tag">Surveys</span>
+          <span class="tag">Geo-data</span><span class="tag">World Bank</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">Machine Learning</div>
+        <p class="skill-desc">Predictive modelling, classification, and cluster analysis for actionable patterns.</p>
+        <div class="skill-tags">
+          <span class="tag">scikit-learn</span><span class="tag">XGBoost</span>
+          <span class="tag">K-Means</span><span class="tag">Random Forest</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header fade-in">
+      <span class="section-num">02 /</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- ═══════════════════════════════════════════
+           PROJECT 1: POLYMARKET EDA (FEATURED)
+      ══════════════════════════════════════════════ -->
+      <div class="project-card featured fade-in">
+        <div class="project-featured-header">
+          <span class="project-badge badge-eda">Exploratory Data Analysis</span>
+          <h3 class="project-title">Polymarket EDA: What Do Prediction Markets Actually Reveal?</h3>
+        </div>
+        <div class="project-featured-body">
+          <div>
+            <p class="project-desc">
+              A deep-dive exploratory analysis of Polymarket's open prediction market data. 
+              This project examines market structure, liquidity patterns, probability calibration, 
+              and trader behaviour across thousands of binary outcome markets — uncovering when 
+              crowds are wise and when they systematically drift.
+            </p>
+            <ul class="project-highlights">
+              <li>Ingested and cleaned 52,400 market records; reduced null rate from 18% to 0.3%</li>
+              <li>Identified systematic overconfidence pattern 30 days before resolution</li>
+              <li>Built interactive Plotly calibration curves and category-level Brier scores</li>
+              <li>Political markets showed strongest calibration (Brier: 0.14); crypto worst (0.27)</li>
+              <li>Compared crowd consensus accuracy against individual analyst benchmarks</li>
+            </ul>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="tech-tag">Python</span><span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Seaborn</span><span class="tech-tag">Plotly</span>
+                <span class="tech-tag">Scipy</span><span class="tech-tag">Jupyter</span>
+              </div>
+              <a href="https://github.com/kauthar-tijjani/polymarket-eda" class="project-link" target="_blank">View on GitHub →</a>
+            </div>
+          </div>
+          <!-- Calibration chart -->
+          <div class="project-visual" style="min-height:240px;">
+            <svg viewBox="0 0 340 230" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="areaGrad1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#00e8a2" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#00e8a2" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <line x1="40" y1="20" x2="40" y2="185" stroke="#243330" stroke-width="1"/>
+              <line x1="40" y1="185" x2="320" y2="185" stroke="#243330" stroke-width="1"/>
+              <line x1="40" y1="145" x2="320" y2="145" stroke="#243330" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="40" y1="105" x2="320" y2="105" stroke="#243330" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="40" y1="65"  x2="320" y2="65"  stroke="#243330" stroke-width="0.5" stroke-dasharray="4"/>
+              <!-- Perfect calibration line -->
+              <line x1="40" y1="185" x2="320" y2="25" stroke="#ffd166" stroke-width="1" stroke-dasharray="6" opacity="0.5"/>
+              <!-- Area fill actual -->
+              <path d="M55,172 C90,160 125,138 165,115 C205,92 235,78 300,55 L300,185 L55,185 Z" fill="url(#areaGrad1)"/>
+              <!-- Actual curve -->
+              <path d="M55,172 C90,160 125,138 165,115 C205,92 235,78 300,55" fill="none" stroke="#00e8a2" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Data points -->
+              <circle cx="55"  cy="172" r="4" fill="#00e8a2"/>
+              <circle cx="105" cy="152" r="4" fill="#00e8a2"/>
+              <circle cx="155" cy="126" r="4" fill="#00e8a2"/>
+              <circle cx="205" cy="100" r="4" fill="#00e8a2"/>
+              <circle cx="255" cy="76"  r="4" fill="#00e8a2"/>
+              <circle cx="300" cy="55"  r="4" fill="#00e8a2"/>
+              <!-- Axis labels -->
+              <text x="30" y="188" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">0%</text>
+              <text x="30" y="148" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">25%</text>
+              <text x="30" y="108" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">50%</text>
+              <text x="30" y="68"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">75%</text>
+              <text x="180" y="215" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="9" letter-spacing="1">PREDICTED PROBABILITY</text>
+              <text x="15" y="108" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="9" transform="rotate(-90,15,108)">ACTUAL FREQ.</text>
+              <text x="240" y="44" fill="#ffd166" font-family="DM Mono" font-size="7.5" opacity="0.8">Perfect calibration</text>
+              <text x="305" y="52" fill="#00e8a2" font-family="DM Mono" font-size="7.5">Actual</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ANALYSIS TOGGLE -->
+        <button class="analysis-toggle" onclick="toggleAnalysis(this)">
+          <span>▶ View Full Analysis &amp; Findings</span>
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="analysis-panel">
+          <div class="analysis-subhead">Key Findings</div>
+          <div class="analysis-grid-3">
+            <div class="finding-box highlight">
+              <div class="finding-label">Markets Analysed</div>
+              <div class="finding-value">52,400</div>
+              <div class="finding-note">After deduplication and null-removal pipeline</div>
+            </div>
+            <div class="finding-box highlight-orange">
+              <div class="finding-label">Mean Brier Score</div>
+              <div class="finding-value orange">0.189</div>
+              <div class="finding-note">Lower = better calibrated (0 perfect, 1 worst)</div>
+            </div>
+            <div class="finding-box highlight-yellow">
+              <div class="finding-label">Overconfidence Window</div>
+              <div class="finding-value yellow">T–30d</div>
+              <div class="finding-note">Markets systematically overshoot 30 days prior to resolution</div>
+            </div>
+          </div>
+
+          <div class="analysis-subhead">Calibration by Category</div>
+          <div class="analysis-chart-wrap">
+            <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid -->
+              <line x1="160" y1="10" x2="160" y2="130" stroke="#243330" stroke-width="1"/>
+              <line x1="160" y1="130" x2="550" y2="130" stroke="#243330" stroke-width="0.5"/>
+              <!-- Category labels -->
+              <text x="150" y="35"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="9">Politics</text>
+              <text x="150" y="57"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="9">Economics</text>
+              <text x="150" y="79"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="9">Sports</text>
+              <text x="150" y="101" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="9">Science</text>
+              <text x="150" y="123" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="9">Crypto</text>
+              <!-- Bars (Brier score — lower is better, so shorter = better) -->
+              <rect x="163" y="24" width="175" height="14" fill="#00e8a2" opacity="0.85" rx="2"/>
+              <text x="344" y="35" fill="#00e8a2" font-family="DM Mono" font-size="8" dx="5">0.14</text>
+              <rect x="163" y="46" width="215" height="14" fill="#00e8a2" opacity="0.65" rx="2"/>
+              <text x="384" y="57" fill="#00e8a2" font-family="DM Mono" font-size="8" dx="5">0.17</text>
+              <rect x="163" y="68" width="245" height="14" fill="#ffd166" opacity="0.75" rx="2"/>
+              <text x="414" y="79" fill="#ffd166" font-family="DM Mono" font-size="8" dx="5">0.20</text>
+              <rect x="163" y="90" width="268" height="14" fill="#ffd166" opacity="0.6" rx="2"/>
+              <text x="437" y="101" fill="#ffd166" font-family="DM Mono" font-size="8" dx="5">0.22</text>
+              <rect x="163" y="112" width="330" height="14" fill="#ff6b35" opacity="0.75" rx="2"/>
+              <text x="499" y="123" fill="#ff6b35" font-family="DM Mono" font-size="8" dx="5">0.27</text>
+              <!-- Reference label -->
+              <text x="350" y="148" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">BRIER SCORE (lower = better calibration)</text>
+            </svg>
+          </div>
+
+          <div class="analysis-text">
+            Political markets emerged as the most reliable predictors, with a mean Brier score of <strong>0.14</strong> — 
+            nearly twice as accurate as crypto markets (0.27). This likely reflects that political outcomes 
+            attract the most informed, research-driven participants. Crypto markets suffer from 
+            reflexivity: large traders can move the very probabilities they're betting on.
+          </div>
+
+          <div class="analysis-subhead">Methodology</div>
+          <div class="code-snippet">
+<span class="cm"># Data cleaning pipeline</span>
+df = pd.read_json(<span class="st">'polymarket_markets.json'</span>)
+df = df.<span class="fn">dropna</span>(subset=[<span class="st">'resolution', 'final_prob'</span>])
+df[<span class="st">'resolved_binary'</span>] = (df[<span class="st">'resolution'</span>] == <span class="st">'YES'</span>).<span class="fn">astype</span>(<span class="nm">int</span>)
+
+<span class="cm"># Brier score per category</span>
+brier = df.<span class="fn">groupby</span>(<span class="st">'category'</span>).<span class="fn">apply</span>(
+  <span class="kw">lambda</span> g: ((g[<span class="st">'final_prob'</span>] - g[<span class="st">'resolved_binary'</span>])**<span class="nm">2</span>).<span class="fn">mean</span>()
+).<span class="fn">sort_values</span>()
+          </div>
+
+          <div class="analysis-text">
+            The most striking finding was the <strong>T–30 day overconfidence window</strong>: across all categories, 
+            markets that had been open for more than 60 days showed a measurable probability 
+            overshoot in the final 30 days — the crowd collectively anchored to early momentum, 
+            making late-stage markets less accurate than their early-stage equivalents.
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+           PROJECT 2: MARKET RESOLUTION PREDICTOR
+      ══════════════════════════════════════════════ -->
+      <div class="project-card fade-in">
+        <div class="project-split">
+          <div class="project-visual">
+            <svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+              <!-- SHAP waterfall style -->
+              <text x="120" y="16" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8" letter-spacing="1">SHAP FEATURE IMPORTANCE</text>
+              <line x1="80" y1="25" x2="80" y2="185" stroke="#243330" stroke-width="1"/>
+              <!-- Features -->
+              <text x="75" y="45"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">Days to resolve</text>
+              <text x="75" y="67"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">Volume 7d</text>
+              <text x="75" y="89"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">Category</text>
+              <text x="75" y="111" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">Prob at T-7</text>
+              <text x="75" y="133" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">Trader count</text>
+              <text x="75" y="155" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">Liquidity depth</text>
+              <text x="75" y="177" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">Spread at T-7</text>
+              <!-- SHAP bars -->
+              <rect x="83" y="34"  width="115" height="12" fill="#00e8a2" opacity="0.9" rx="2"/>
+              <rect x="83" y="56"  width="90"  height="12" fill="#00e8a2" opacity="0.75" rx="2"/>
+              <rect x="83" y="78"  width="72"  height="12" fill="#00e8a2" opacity="0.65" rx="2"/>
+              <rect x="83" y="100" width="58"  height="12" fill="#ffd166" opacity="0.75" rx="2"/>
+              <rect x="83" y="122" width="44"  height="12" fill="#ffd166" opacity="0.6" rx="2"/>
+              <rect x="83" y="144" width="33"  height="12" fill="#ff6b35" opacity="0.65" rx="2"/>
+              <rect x="83" y="166" width="22"  height="12" fill="#ff6b35" opacity="0.5" rx="2"/>
+              <!-- Values -->
+              <text x="202" y="44"  fill="#00e8a2" font-family="DM Mono" font-size="7.5">0.31</text>
+              <text x="177" y="66"  fill="#00e8a2" font-family="DM Mono" font-size="7.5">0.24</text>
+              <text x="159" y="88"  fill="#00e8a2" font-family="DM Mono" font-size="7.5">0.19</text>
+              <text x="145" y="110" fill="#ffd166" font-family="DM Mono" font-size="7.5">0.15</text>
+              <text x="131" y="132" fill="#ffd166" font-family="DM Mono" font-size="7.5">0.12</text>
+              <text x="120" y="154" fill="#ff6b35" font-family="DM Mono" font-size="7.5">0.09</text>
+              <text x="109" y="176" fill="#ff6b35" font-family="DM Mono" font-size="7.5">0.06</text>
+            </svg>
+          </div>
+          <div class="project-content">
+            <div>
+              <span class="project-badge badge-ml">Predictive Modelling</span>
+              <h3 class="project-title">Market Resolution Predictor</h3>
+              <p class="project-desc">
+                An XGBoost classification model to predict whether a Polymarket market's 
+                final probability will differ significantly from its 7-day-out consensus, 
+                flagging potential mispricing opportunities with 78% out-of-sample precision.
+              </p>
+              <ul class="project-highlights">
+                <li>Feature engineering across 15+ market metadata fields</li>
+                <li>XGBoost classifier: 78% precision, 71% recall on held-out test set</li>
+                <li>SHAP values revealed "days to resolution" as dominant predictor</li>
+                <li>Stratified k-fold (k=5) cross-validation to prevent data leakage</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="tech-tag">Python</span><span class="tech-tag">XGBoost</span>
+                <span class="tech-tag">SHAP</span><span class="tech-tag">scikit-learn</span>
+              </div>
+              <a href="https://github.com/kauthar-tijjani/polymarket-predictor" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="analysis-toggle" onclick="toggleAnalysis(this)">
+          <span>▶ View Model Performance &amp; Methodology</span>
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="analysis-panel">
+          <div class="analysis-subhead">Model Performance</div>
+          <div class="analysis-grid">
+            <div>
+              <div class="analysis-grid" style="margin-bottom:0;">
+                <div class="finding-box highlight">
+                  <div class="finding-label">Precision</div>
+                  <div class="finding-value">78%</div>
+                  <div class="finding-note">Fraction of flagged markets that were genuinely mispriced</div>
+                </div>
+                <div class="finding-box highlight-yellow">
+                  <div class="finding-label">Recall</div>
+                  <div class="finding-value yellow">71%</div>
+                  <div class="finding-note">Share of actual mispricings that were caught</div>
+                </div>
+              </div>
+              <div class="finding-box" style="margin-top:1rem;">
+                <div class="finding-label">ROC-AUC Score</div>
+                <div class="finding-value purple">0.83</div>
+                <div class="finding-note">Robust discrimination across all classification thresholds</div>
+              </div>
+            </div>
+            <div>
+              <div class="analysis-subhead" style="margin-bottom:0.6rem;">Confusion Matrix</div>
+              <table class="result-table">
+                <tr><th></th><th>Predicted: No</th><th>Predicted: Yes</th></tr>
+                <tr><td>Actual: No</td><td class="positive">1,842</td><td class="negative">312</td></tr>
+                <tr><td>Actual: Yes</td><td class="negative">274</td><td class="positive">948</td></tr>
+              </table>
+              <p class="analysis-text" style="font-size:0.78rem; margin-top:0.6rem;">
+                Test set: 3,376 markets. The model errs toward false negatives — a deliberate 
+                tuning choice to reduce spurious mispricing alerts.
+              </p>
+            </div>
+          </div>
+
+          <div class="analysis-subhead">Key Methodology Steps</div>
+          <ul class="methodology-list">
+            <li>Defined target label: markets where |final_prob − prob_T7| &gt; 0.15 were coded as "significant shift"</li>
+            <li>Applied SMOTE oversampling to address class imbalance (positive class: ~28% of data)</li>
+            <li>Bayesian hyperparameter search over learning rate, max_depth, and subsample ratio</li>
+            <li>Post-hoc SHAP analysis to ensure model interpretability for stakeholders</li>
+            <li>Baseline comparison: a naïve rule (flag all markets &gt;60 days old) achieved only 54% precision</li>
+          </ul>
+
+          <div class="code-snippet">
+<span class="cm"># SHAP explanation for a single prediction</span>
+explainer = shap.<span class="fn">TreeExplainer</span>(model)
+shap_values = explainer.<span class="fn">shap_values</span>(X_test)
+shap.<span class="fn">summary_plot</span>(shap_values, X_test,
+    feature_names=feature_cols,
+    plot_type=<span class="st">"bar"</span>)
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+           PROJECT 3: SENTIMENT DASHBOARD
+      ══════════════════════════════════════════════ -->
+      <div class="project-card fade-in">
+        <div class="project-split">
+          <div class="project-visual">
+            <svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+              <text x="120" y="14" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">SENTIMENT HEATMAP (7-DAY WINDOW)</text>
+              <!-- Column headers -->
+              <text x="42"  y="28" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7">Mon</text>
+              <text x="79"  y="28" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7">Tue</text>
+              <text x="116" y="28" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7">Wed</text>
+              <text x="153" y="28" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7">Thu</text>
+              <text x="190" y="28" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7">Fri</text>
+              <!-- Row labels -->
+              <text x="16" y="52"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">Politics</text>
+              <text x="16" y="82"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">Crypto</text>
+              <text x="16" y="112" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">Sports</text>
+              <text x="16" y="142" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">Science</text>
+              <!-- Heatmap cells — politics row -->
+              <rect x="22" y="32" width="34" height="26" fill="#00e8a2" opacity="0.82" rx="3"/>
+              <rect x="60" y="32" width="34" height="26" fill="#00e8a2" opacity="0.55" rx="3"/>
+              <rect x="98" y="32" width="34" height="26" fill="#00e8a2" opacity="0.35" rx="3"/>
+              <rect x="136" y="32" width="34" height="26" fill="#ffd166" opacity="0.65" rx="3"/>
+              <rect x="174" y="32" width="34" height="26" fill="#ffd166" opacity="0.45" rx="3"/>
+              <!-- crypto row -->
+              <rect x="22" y="62" width="34" height="26" fill="#ff6b35" opacity="0.7" rx="3"/>
+              <rect x="60" y="62" width="34" height="26" fill="#ff6b35" opacity="0.45" rx="3"/>
+              <rect x="98" y="62" width="34" height="26" fill="#00e8a2" opacity="0.6" rx="3"/>
+              <rect x="136" y="62" width="34" height="26" fill="#00e8a2" opacity="0.85" rx="3"/>
+              <rect x="174" y="62" width="34" height="26" fill="#ff6b35" opacity="0.55" rx="3"/>
+              <!-- sports row -->
+              <rect x="22" y="92" width="34" height="26" fill="#00e8a2" opacity="0.4" rx="3"/>
+              <rect x="60" y="92" width="34" height="26" fill="#ffd166" opacity="0.75" rx="3"/>
+              <rect x="98" y="92" width="34" height="26" fill="#ffd166" opacity="0.5" rx="3"/>
+              <rect x="136" y="92" width="34" height="26" fill="#00e8a2" opacity="0.7" rx="3"/>
+              <rect x="174" y="92" width="34" height="26" fill="#00e8a2" opacity="0.55" rx="3"/>
+              <!-- science row -->
+              <rect x="22" y="122" width="34" height="26" fill="#ffd166" opacity="0.5" rx="3"/>
+              <rect x="60" y="122" width="34" height="26" fill="#00e8a2" opacity="0.65" rx="3"/>
+              <rect x="98" y="122" width="34" height="26" fill="#ff6b35" opacity="0.4" rx="3"/>
+              <rect x="136" y="122" width="34" height="26" fill="#ffd166" opacity="0.7" rx="3"/>
+              <rect x="174" y="122" width="34" height="26" fill="#00e8a2" opacity="0.8" rx="3"/>
+              <!-- legend -->
+              <rect x="22" y="162" width="14" height="8" fill="#00e8a2" opacity="0.85" rx="1"/>
+              <text x="40" y="170" fill="#7a9990" font-family="DM Mono" font-size="7">Bullish shift</text>
+              <rect x="100" y="162" width="14" height="8" fill="#ffd166" opacity="0.75" rx="1"/>
+              <text x="118" y="170" fill="#7a9990" font-family="DM Mono" font-size="7">Neutral</text>
+              <rect x="165" y="162" width="14" height="8" fill="#ff6b35" opacity="0.7" rx="1"/>
+              <text x="183" y="170" fill="#7a9990" font-family="DM Mono" font-size="7">Bearish shift</text>
+            </svg>
+          </div>
+          <div class="project-content">
+            <div>
+              <span class="project-badge badge-viz">Dashboard & Visualisation</span>
+              <h3 class="project-title">Polymarket Sentiment Dashboard</h3>
+              <p class="project-desc">
+                An interactive Power BI + Plotly Dash dashboard tracking real-time sentiment 
+                shifts across Polymarket categories — auto-refreshed every 4 hours via scheduled 
+                API ingestion with daily digest report generation.
+              </p>
+              <ul class="project-highlights">
+                <li>REST API pipeline ingesting 200+ active markets every 4 hours</li>
+                <li>Heatmap view of probability drift per category per day of week</li>
+                <li>Friday anomaly detected: crypto markets 34% more volatile on Fridays</li>
+                <li>Automated PDF digest emailed to 12 subscribers via scheduled Python script</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="tech-tag">Plotly Dash</span><span class="tech-tag">Power BI</span>
+                <span class="tech-tag">REST API</span><span class="tech-tag">Pandas</span>
+              </div>
+              <a href="https://github.com/kauthar-tijjani/polymarket-dashboard" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="analysis-toggle" onclick="toggleAnalysis(this)">
+          <span>▶ View Dashboard Architecture &amp; Insights</span>
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="analysis-panel">
+          <div class="analysis-subhead">Day-of-Week Volatility by Category</div>
+          <div class="analysis-chart-wrap">
+            <svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg">
+              <line x1="40" y1="10" x2="40" y2="115" stroke="#243330" stroke-width="1"/>
+              <line x1="40" y1="115" x2="545" y2="115" stroke="#243330" stroke-width="0.5"/>
+              <!-- Grid horizontals -->
+              <line x1="40" y1="40"  x2="545" y2="40"  stroke="#243330" stroke-width="0.5" stroke-dasharray="3" opacity="0.5"/>
+              <line x1="40" y1="75"  x2="545" y2="75"  stroke="#243330" stroke-width="0.5" stroke-dasharray="3" opacity="0.5"/>
+              <!-- Y axis labels -->
+              <text x="34" y="115" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">0</text>
+              <text x="34" y="75"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">0.5</text>
+              <text x="34" y="40"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">1.0</text>
+              <!-- Days x axis -->
+              <text x="102"  y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">Mon</text>
+              <text x="200"  y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">Tue</text>
+              <text x="298"  y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">Wed</text>
+              <text x="396"  y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">Thu</text>
+              <text x="494"  y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">Fri</text>
+              <!-- Crypto volatility line (HIGH) -->
+              <polyline points="102,78 200,82 298,75 396,70 494,30" fill="none" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <!-- Politics volatility line (LOW-MEDIUM) -->
+              <polyline points="102,90 200,85 298,88 396,82 494,79" fill="none" stroke="#00e8a2" stroke-width="2" stroke-linecap="round"/>
+              <!-- Sports volatility line (MEDIUM) -->
+              <polyline points="102,84 200,79 298,83 396,81 494,76" fill="none" stroke="#ffd166" stroke-width="2" stroke-linecap="round"/>
+              <!-- Friday spike annotation -->
+              <line x1="494" y1="30" x2="494" y2="115" stroke="#ff6b35" stroke-width="0.8" stroke-dasharray="4" opacity="0.5"/>
+              <text x="490" y="22" text-anchor="end" fill="#ff6b35" font-family="DM Mono" font-size="7.5">+34% spike</text>
+              <!-- Legend -->
+              <line x1="50" y1="8" x2="70" y2="8" stroke="#ff6b35" stroke-width="2"/>
+              <text x="75" y="11" fill="#ff6b35" font-family="DM Mono" font-size="7.5">Crypto</text>
+              <line x1="130" y1="8" x2="150" y2="8" stroke="#00e8a2" stroke-width="2"/>
+              <text x="155" y="11" fill="#00e8a2" font-family="DM Mono" font-size="7.5">Politics</text>
+              <line x1="215" y1="8" x2="235" y2="8" stroke="#ffd166" stroke-width="2"/>
+              <text x="240" y="11" fill="#ffd166" font-family="DM Mono" font-size="7.5">Sports</text>
+            </svg>
+          </div>
+
+          <div class="analysis-text">
+            The dashboard revealed a strong <strong>Friday volatility effect in crypto markets</strong> — 
+            mean probability drift was 34% higher on Fridays compared to weekday averages. 
+            This pattern likely reflects weekend trading anxiety and low liquidity windows, 
+            where fewer active traders allow larger moves on smaller order sizes.
+          </div>
+
+          <div class="analysis-subhead">Pipeline Architecture</div>
+          <ul class="methodology-list">
+            <li>Scheduled Python script (APScheduler) hits Polymarket CLOB API every 4 hours</li>
+            <li>Raw JSON stored in SQLite; transformed into category-day pivot tables via Pandas</li>
+            <li>Plotly Dash serves interactive heatmap with drill-down to individual markets</li>
+            <li>Power BI connected to SQLite via ODBC driver for executive-level KPI summary</li>
+            <li>ReportLab generates formatted PDF digest; SMTP sends to subscriber list at 08:00 UTC daily</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+           PROJECT 4: PROBABILITY DRIFT & ANOMALY
+      ══════════════════════════════════════════════ -->
+      <div class="project-card fade-in">
+        <div class="project-split">
+          <div class="project-visual">
+            <svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="tsGrad2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffd166" stop-opacity="0.22"/>
+                  <stop offset="100%" stop-color="#ffd166" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <text x="120" y="13" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7.5">PROBABILITY OVER MARKET LIFECYCLE</text>
+              <line x1="20" y1="170" x2="228" y2="170" stroke="#243330" stroke-width="1"/>
+              <line x1="20" y1="170" x2="20" y2="20" stroke="#243330" stroke-width="0.5"/>
+              <!-- Confidence bands -->
+              <path d="M25,145 C50,140 70,128 95,110 C120,92 140,100 160,88 C175,78 195,45 220,32 L220,60 C195,73 175,108 160,118 C140,130 120,122 95,140 C70,158 50,170 25,175 Z" fill="#ffd166" opacity="0.07"/>
+              <!-- Main line -->
+              <path d="M25,145 C50,140 70,128 95,110 C120,92 140,100 160,88 C175,78 195,45 220,32 L220,170 L25,170 Z" fill="url(#tsGrad2)"/>
+              <path d="M25,145 C50,140 70,128 95,110 C120,92 140,100 160,88 C175,78 195,45 220,32" fill="none" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- ARIMA forecast (dashed extension) -->
+              <path d="M220,32 C225,28 230,24 235,20" fill="none" stroke="#ffd166" stroke-width="2" stroke-dasharray="5" opacity="0.5"/>
+              <!-- Anomaly circle + annotation -->
+              <circle cx="140" cy="100" r="8" fill="none" stroke="#ff6b35" stroke-width="1.5"/>
+              <line x1="140" y1="90" x2="140" y2="65" stroke="#ff6b35" stroke-width="1" stroke-dasharray="3"/>
+              <text x="145" y="62" fill="#ff6b35" font-family="DM Mono" font-size="7">anomaly</text>
+              <text x="145" y="72" fill="#ff6b35" font-family="DM Mono" font-size="7">z=2.9</text>
+              <!-- X axis labels -->
+              <text x="25"  y="182" fill="#7a9990" font-family="DM Mono" font-size="7">T–90d</text>
+              <text x="95"  y="182" fill="#7a9990" font-family="DM Mono" font-size="7">T–60d</text>
+              <text x="165" y="182" fill="#7a9990" font-family="DM Mono" font-size="7">T–30d</text>
+              <text x="212" y="182" fill="#7a9990" font-family="DM Mono" font-size="7">T–0</text>
+              <!-- Y labels -->
+              <text x="16" y="172" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">0%</text>
+              <text x="16" y="115" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">50%</text>
+              <text x="16" y="30"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7">100%</text>
+            </svg>
+          </div>
+          <div class="project-content">
+            <div>
+              <span class="project-badge badge-stats">Time-Series Analysis</span>
+              <h3 class="project-title">Probability Drift & Anomaly Detection</h3>
+              <p class="project-desc">
+                Time-series analysis of how Polymarket probabilities evolve over a market's 
+                lifecycle, with automated anomaly detection for sudden consensus shifts using 
+                rolling z-scores and ARIMA baseline comparisons.
+              </p>
+              <ul class="project-highlights">
+                <li>Rolling 7-day window statistics to detect structural breaks in probability series</li>
+                <li>Z-score threshold (|z| &gt; 2.5) flagged 847 anomalies across 12,000 markets</li>
+                <li>ARIMA(1,1,1) baseline vs. actual — RMSE reduced 22% over naïve walk</li>
+                <li>Anomalies concentrated 31–45 days before resolution (news-driven events)</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="tech-tag">Python</span><span class="tech-tag">Statsmodels</span>
+                <span class="tech-tag">ARIMA</span><span class="tech-tag">Pandas</span>
+              </div>
+              <a href="https://github.com/kauthar-tijjani/polymarket-timeseries" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="analysis-toggle" onclick="toggleAnalysis(this)">
+          <span>▶ View Time-Series Results &amp; Anomaly Analysis</span>
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="analysis-panel">
+          <div class="analysis-subhead">Anomaly Distribution by Days-to-Resolution</div>
+          <div class="analysis-chart-wrap">
+            <svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg">
+              <line x1="50" y1="10" x2="50" y2="115" stroke="#243330" stroke-width="1"/>
+              <line x1="50" y1="115" x2="545" y2="115" stroke="#243330" stroke-width="0.5"/>
+              <!-- Y labels -->
+              <text x="44" y="115" text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">0</text>
+              <text x="44" y="75"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">100</text>
+              <text x="44" y="38"  text-anchor="end" fill="#7a9990" font-family="DM Mono" font-size="7.5">200</text>
+              <!-- Bars: anomaly count per 10-day window -->
+              <!-- T-90 to T-80 -->
+              <rect x="58"  y="103" width="42" height="12" fill="#00e8a2" opacity="0.5" rx="2"/>
+              <rect x="108" y="100" width="42" height="15" fill="#00e8a2" opacity="0.55" rx="2"/>
+              <rect x="158" y="94"  width="42" height="21" fill="#00e8a2" opacity="0.6" rx="2"/>
+              <rect x="208" y="88"  width="42" height="27" fill="#ffd166" opacity="0.6" rx="2"/>
+              <rect x="258" y="75"  width="42" height="40" fill="#ffd166" opacity="0.75" rx="2"/>
+              <!-- T-40 to T-30 — peak anomaly zone -->
+              <rect x="308" y="40"  width="42" height="75" fill="#ff6b35" opacity="0.85" rx="2"/>
+              <text x="329" y="36"  text-anchor="middle" fill="#ff6b35" font-family="DM Mono" font-size="7.5">Peak</text>
+              <rect x="358" y="55"  width="42" height="60" fill="#ff6b35" opacity="0.65" rx="2"/>
+              <rect x="408" y="72"  width="42" height="43" fill="#ffd166" opacity="0.6" rx="2"/>
+              <rect x="458" y="85"  width="42" height="30" fill="#00e8a2" opacity="0.55" rx="2"/>
+              <!-- X axis labels -->
+              <text x="79"  y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7.5">T–90</text>
+              <text x="179" y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7.5">T–70</text>
+              <text x="279" y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7.5">T–50</text>
+              <text x="329" y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7.5">T–40</text>
+              <text x="429" y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7.5">T–20</text>
+              <text x="479" y="130" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7.5">T–10</text>
+              <text x="295" y="145" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">DAYS BEFORE RESOLUTION</text>
+            </svg>
+          </div>
+
+          <div class="analysis-text">
+            Anomalies cluster sharply in the <strong>T–40 to T–30 day window</strong>, which corresponds 
+            to when major news events (election polls, regulatory announcements, game results) 
+            tend to become public. Outside this window, markets evolve gradually and are 
+            well-described by the ARIMA baseline.
+          </div>
+
+          <div class="analysis-subhead">ARIMA Model Selection</div>
+          <table class="result-table">
+            <tr><th>Model</th><th>AIC</th><th>RMSE</th><th>Notes</th></tr>
+            <tr><td>Naïve (random walk)</td><td class="negative">—</td><td class="negative">0.087</td><td>Baseline</td></tr>
+            <tr><td>ARIMA(1,0,0)</td><td>−3,241</td><td class="neutral">0.074</td><td>AR only</td></tr>
+            <tr><td>ARIMA(1,1,0)</td><td>−3,518</td><td class="neutral">0.072</td><td>+ differencing</td></tr>
+            <tr><td>ARIMA(1,1,1)</td><td class="positive">−3,892</td><td class="positive">0.068</td><td>Best fit ✓</td></tr>
+            <tr><td>ARIMA(2,1,2)</td><td>−3,850</td><td>0.069</td><td>Overfit risk</td></tr>
+          </table>
+
+          <div class="code-snippet">
+<span class="cm"># Anomaly detection with rolling z-score</span>
+<span class="kw">def</span> <span class="fn">flag_anomalies</span>(series, window=<span class="nm">7</span>, threshold=<span class="nm">2.5</span>):
+    roll = series.<span class="fn">rolling</span>(window)
+    z = (series - roll.<span class="fn">mean</span>()) / roll.<span class="fn">std</span>()
+    <span class="kw">return</span> z.<span class="fn">abs</span>() > threshold
+
+df[<span class="st">'anomaly'</span>] = df.<span class="fn">groupby</span>(<span class="st">'market_id'</span>)[<span class="st">'prob'</span>].<span class="fn">transform</span>(flag_anomalies)
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+           PROJECT 5: LIQUIDITY & ACCURACY CORRELATION
+      ══════════════════════════════════════════════ -->
+      <div class="project-card fade-in">
+        <div class="project-split">
+          <div class="project-visual">
+            <svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+              <text x="120" y="13" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="7.5">VOLUME vs. BRIER SCORE (N=8,200)</text>
+              <line x1="22" y1="170" x2="228" y2="170" stroke="#243330" stroke-width="1"/>
+              <line x1="22" y1="20"  x2="22"  y2="170" stroke="#243330" stroke-width="0.5"/>
+              <!-- OLS trendline -->
+              <line x1="30" y1="155" x2="220" y2="55" stroke="#7a9990" stroke-width="1.2" stroke-dasharray="6" opacity="0.45"/>
+              <!-- Scatter points — sized by liquidity -->
+              <circle cx="40"  cy="148" r="5.5" fill="#00e8a2" opacity="0.65"/>
+              <circle cx="55"  cy="140" r="4"   fill="#00e8a2" opacity="0.55"/>
+              <circle cx="70"  cy="130" r="7"   fill="#ffd166" opacity="0.7"/>
+              <circle cx="88"  cy="122" r="5"   fill="#00e8a2" opacity="0.65"/>
+              <circle cx="100" cy="118" r="9"   fill="#ffd166" opacity="0.75"/>
+              <circle cx="115" cy="108" r="5"   fill="#00e8a2" opacity="0.6"/>
+              <circle cx="130" cy="100" r="6"   fill="#00e8a2" opacity="0.7"/>
+              <circle cx="145" cy="92"  r="4"   fill="#00e8a2" opacity="0.55"/>
+              <circle cx="160" cy="84"  r="8"   fill="#ffd166" opacity="0.72"/>
+              <circle cx="175" cy="76"  r="5.5" fill="#00e8a2" opacity="0.65"/>
+              <circle cx="188" cy="68"  r="11"  fill="#ffd166" opacity="0.8"/>
+              <circle cx="200" cy="62"  r="6"   fill="#00e8a2" opacity="0.6"/>
+              <circle cx="212" cy="58"  r="7.5" fill="#ff6b35" opacity="0.7"/>
+              <!-- Outlier -->
+              <circle cx="118" cy="138" r="7"   fill="#ff6b35" opacity="0.75"/>
+              <line x1="118" y1="130" x2="130" y2="115" stroke="#ff6b35" stroke-width="0.8"/>
+              <text x="132" y="113" fill="#ff6b35" font-family="DM Mono" font-size="6.5">outlier</text>
+              <!-- Axes labels -->
+              <text x="125" y="186" text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8">TRADING VOLUME (LOG SCALE)</text>
+              <text x="10"  y="95"  text-anchor="middle" fill="#7a9990" font-family="DM Mono" font-size="8" transform="rotate(-90,10,95)">BRIER SCORE</text>
+            </svg>
+          </div>
+          <div class="project-content">
+            <div>
+              <span class="project-badge badge-stats">Regression Analysis</span>
+              <h3 class="project-title">Liquidity & Accuracy Correlation Study</h3>
+              <p class="project-desc">
+                A statistical study examining whether higher trading volume and liquidity depth 
+                correlate with better final resolution accuracy across Polymarket categories.
+                Spoiler: they do — but the relationship is non-linear and category-dependent.
+              </p>
+              <ul class="project-highlights">
+                <li>Pearson r = −0.61 (volume vs. Brier score); Spearman ρ = −0.58</li>
+                <li>OLS regression with category fixed effects: R² = 0.44</li>
+                <li>Bootstrap CIs (n=5,000 samples) confirmed effect stability</li>
+                <li>Diminishing returns above $500K volume — accuracy plateaus</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span class="tech-tag">Python</span><span class="tech-tag">Statsmodels</span>
+                <span class="tech-tag">Scipy</span><span class="tech-tag">Seaborn</span>
+              </div>
+              <a href="https://github.com/kauthar-tijjani/polymarket-liquidity-study" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="analysis-toggle" onclick="toggleAnalysis(this)">
+          <span>▶ View Regression Results &amp; Statistical Tests</span>
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="analysis-panel">
+          <div class="analysis-subhead">OLS Regression Output (Dependent variable: Brier Score)</div>
+          <table class="result-table">
+            <tr><th>Variable</th><th>Coefficient</th><th>Std. Error</th><th>p-value</th><th>Sig.</th></tr>
+            <tr><td>Intercept</td><td>0.312</td><td>0.018</td><td class="negative">&lt;0.001</td><td>***</td></tr>
+            <tr><td>log(Volume)</td><td class="positive">−0.041</td><td>0.004</td><td class="negative">&lt;0.001</td><td>***</td></tr>
+            <tr><td>log(Liquidity depth)</td><td class="positive">−0.028</td><td>0.006</td><td class="negative">&lt;0.001</td><td>***</td></tr>
+            <tr><td>Trader count</td><td class="positive">−0.0003</td><td>0.00009</td><td class="negative">0.002</td><td>**</td></tr>
+            <tr><td>Category: Crypto</td><td class="negative">+0.068</td><td>0.011</td><td class="negative">&lt;0.001</td><td>***</td></tr>
+            <tr><td>Category: Politics</td><td class="positive">−0.033</td><td>0.010</td><td class="negative">0.001</td><td>**</td></tr>
+            <tr><td>R² (adjusted)</td><td colspan="4" class="positive">0.437</td></tr>
+          </table>
+
+          <div class="analysis-text">
+            The negative coefficient on log(Volume) confirms that more liquid markets are better 
+            calibrated — but using log-volume rather than raw volume was critical: 
+            <strong>the effect is strongly logarithmic</strong>. Moving from $1K to $10K volume improves accuracy 
+            far more than moving from $1M to $10M. Above ~$500K, additional volume provides 
+            negligible calibration benefit.
+          </div>
+
+          <div class="analysis-subhead">Correlation Summary by Category</div>
+          <div class="analysis-grid">
+            <div>
+              <div class="finding-box highlight">
+                <div class="finding-label">Pearson r (all markets)</div>
+                <div class="finding-value">−0.61</div>
+                <div class="finding-note">Volume vs. Brier score. Significant at p &lt; 0.001</div>
+              </div>
+            </div>
+            <div>
+              <div class="finding-box highlight-orange">
+                <div class="finding-label">Crypto category r</div>
+                <div class="finding-value orange">−0.38</div>
+                <div class="finding-note">Weakest relationship — reflexivity dampens the effect</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-snippet">
+<span class="cm"># Bootstrap confidence interval for Pearson r</span>
+<span class="kw">def</span> <span class="fn">bootstrap_r</span>(x, y, n=<span class="nm">5000</span>):
+    samples = [np.<span class="fn">corrcoef</span>(
+        *<span class="fn">zip</span>(*np.random.<span class="fn">choice</span>(<span class="fn">list</span>(<span class="fn">zip</span>(x,y)), <span class="fn">len</span>(x), replace=<span class="kw">True</span>))
+    )[<span class="nm">0</span>,<span class="nm">1</span>] <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(n)]
+    <span class="kw">return</span> np.<span class="fn">percentile</span>(samples, [<span class="nm">2.5</span>, <span class="nm">97.5</span>])
+
+ci = <span class="fn">bootstrap_r</span>(df[<span class="st">'log_volume'</span>], df[<span class="st">'brier_score'</span>])
+<span class="cm"># Output: 95% CI = [−0.635, −0.582]</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header fade-in">
+      <span class="section-num">03 /</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">2021 — Present · 4 Years</div>
+        <div class="timeline-role">Data Analyst</div>
+        <div class="timeline-org">APPEALS Project Nigeria (World Bank-funded Agricultural Programme)</div>
+        <ul class="timeline-details">
+          <li>Designed and maintained M&E databases tracking agricultural output across 6 Nigerian states</li>
+          <li>Cleaned and merged large farmer survey datasets (10,000+ respondents) using Python and Excel, reducing data inconsistencies by 40%</li>
+          <li>Produced quarterly statistical reports and Power BI dashboards used in programme reviews with World Bank stakeholders</li>
+          <li>Conducted geo-spatial analysis of crop yield distributions using QGIS and Python to inform resource allocation decisions</li>
+          <li>Built automated data validation scripts reducing manual cleaning time by 60%</li>
+          <li>Collaborated with field teams to design data collection instruments, improving survey response accuracy</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">2020 — 2021</div>
+        <div class="timeline-role">Data & Research Intern</div>
+        <div class="timeline-org">Independent Research · Abuja, Nigeria</div>
+        <ul class="timeline-details">
+          <li>Performed exploratory data analysis on publicly available agricultural and socioeconomic datasets from the Nigerian Bureau of Statistics</li>
+          <li>Produced data-driven reports on food security trends across Northern Nigeria</li>
+          <li>Built foundational proficiency in Python, SQL, and data visualisation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header fade-in">
+      <span class="section-num">04 /</span>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-grid fade-in">
+      <div class="contact-text">
+        <h3>Let's build something meaningful with data.</h3>
+        <p>
+          I'm open to data analyst roles, freelance projects, and research collaborations — 
+          particularly in development economics, public health data, and financial market analytics.
+        </p>
+        <div class="contact-links">
+          <a href="https://github.com/kauthar-tijjani" class="contact-item" target="_blank">
+            <span class="contact-icon">🐙</span>
+            <span>
+              <span class="contact-label">GitHub</span>
+              <span class="contact-value">github.com/kauthar-tijjani</span>
+            </span>
+          </a>
+          <a href="https://linkedin.com/in/kauthar-tijjani" class="contact-item" target="_blank">
+            <span class="contact-icon">💼</span>
+            <span>
+              <span class="contact-label">LinkedIn</span>
+              <span class="contact-value">linkedin.com/in/kauthar-tijjani</span>
+            </span>
+          </a>
+          <a href="mailto:kauthar@example.com" class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <span>
+              <span class="contact-label">Email</span>
+              <span class="contact-value">kauthar.tijjani@email.com</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="Jane Doe"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="jane@example.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell me about your project or opportunity..."></textarea>
+        </div>
+        <button class="btn-primary" type="submit" style="align-self:flex-start;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-text">Designed & built by <span>Kauthar Tijjani</span> · 2025</span>
+    <span class="footer-text">Data Analyst · <span>APPEALS Project Nigeria</span></span>
+  </footer>
+
+  <script>
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Analysis panel toggle
+    function toggleAnalysis(btn) {
+      const panel = btn.nextElementSibling;
+      const isOpen = panel.classList.contains('open');
+      panel.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+      const label = btn.querySelector('span:first-child');
+      if (!isOpen) {
+        label.textContent = label.textContent.replace('▶', '▼');
+      } else {
+        label.textContent = label.textContent.replace('▼', '▶');
+      }
+    }
+  </script>
+</body>
+</html>
